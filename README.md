@@ -1,24 +1,21 @@
-# README
+# Football Player Rating
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+- Ruby version 3.1.2
+- Rails 7.1.3
+- PostgreSQL 
 
-* Ruby version
+## Installation
 
-* System dependencies
+1. Clone the repository: [`git clone https://github.com/SunSof/football_player_ratings.git`]
+2. Install dependencies: `bundle install`
+3. Setup database: `bundle exec rake db:create` `bundle exec rake db:migrate`
 
-* Configuration
+## Running
 
-* Database creation
+Start the server: `rails s`
 
-* Database initialization
+## Testing
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run tests with RSpec: `rspec spec`
