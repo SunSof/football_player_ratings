@@ -10,7 +10,7 @@
 
 1. Clone the repository: [`git clone https://github.com/SunSof/football_player_ratings.git`]
 2. Install dependencies: `bundle install`
-3. Setup database: `bundle exec rake db:create` `bundle exec rake db:migrate`
+3. Setup database: `bin/rails db:create` `bin/rails db:migrate` `bin/rails db:seed `
 
 ## Running
 
