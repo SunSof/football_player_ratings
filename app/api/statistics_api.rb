@@ -27,7 +27,10 @@ class StatisticsApi < Grape::API
 
       desc "Get player rating"
       get :rating do
-        Rating.calculate(params[:player_id])
+        rating = $redis.get(@player.id)
+        return rating if rating
+
+        @player.rating
       end
 
       resource :statistics do
@@ -48,7 +51,11 @@ class StatisticsApi < Grape::API
 
         desc "Add player statistics"
         post :create do
-          Statistic.create(params)
+          if Statistic.create(params)
+            CalculateRatingJob.perform_async(@player.id)
+          else
+            error!({ error: "Statistic has not been created" }, 422)
+          end
         end
       end
     end

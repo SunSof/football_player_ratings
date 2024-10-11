@@ -35,7 +35,7 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
-    Rails.root.join("spec/fixtures")
+    Rails.root.join("spec/fixtures"),
   ]
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
@@ -57,7 +57,16 @@ RSpec.configure do |config|
   end
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
+  RSpec::Sidekiq.configure do |config|
+    # Clears all job queues before each example
+    config.clear_all_enqueued_jobs = true # default => true
 
+    # Whether to use terminal colours when outputting messages
+    config.enable_terminal_colours = true # default => true
+
+    # Warn when jobs are not enqueued to Redis but to a job array
+    config.warn_when_jobs_not_processed_by_sidekiq = false # default => true
+  end
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
